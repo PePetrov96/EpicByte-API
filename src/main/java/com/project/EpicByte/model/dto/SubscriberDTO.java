@@ -1,6 +1,5 @@
 package com.project.EpicByte.model.dto;
 
-import com.project.EpicByte.validation.NotUniqueEmail;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,6 +11,5 @@ public class SubscriberDTO {
     private String name;
 
     @NotEmpty(message = "{empty.email.error.text}")
-    @NotUniqueEmail
     private String email;
 }
