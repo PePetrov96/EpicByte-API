@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec='http://www.thymeleaf.org/extras/spring-security'>
+
+<head th:replace="~{fragments/components :: site-head}"></head>
+
+<body>
+    <header th:replace="~{fragments/components :: site-navigation}"></header>
+
+    <div class="page-container">
+        <div class="register-container">
+            <div class="register-form">
+                <h1 th:text="#{register.text}"></h1>
+
+                <form th:method="POST"
+                      th:action="@{/register}"
+                      th:object="${userRegisterDTO}"
+                      class="register-form-input needs-validation">
+
+                    <div class="form-floating mb-3">
+                        <input th:name="firstName"
+                               th:field="*{firstName}"
+                               th:errorclass="is-invalid"
+                               type="text"
+                               class="form-control"
+                               id="firstName"
+                               placeholder="FirstName">
+
+                        <label th:text="#{firstName.text}" for="firstName"></label>
+
+                        <small th:class="text-danger"
+                               th:if="${#fields.hasErrors('firstName')}"
+                               th:errors="*{firstName}"></small>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input th:name="lastName"
+                               th:field="*{lastName}"
+                               th:errorclass="is-invalid"
+                               type="text"
+                               class="form-control"
+                               id="lastName"
+                               placeholder="lastName">
+
+                        <label th:text="#{lastName.text}" for="lastName"></label>
+
+                        <small th:class="text-danger"
+                               th:if="${#fields.hasErrors('lastName')}"
+                               th:errors="*{lastName}"></small>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input th:name="username"
+                               th:field="*{username}"
+                               th:errorclass="is-invalid"
+                               type="text"
+                               class="form-control"
+                               id="username"
+                               placeholder="Username">
+
+                        <label th:text="#{username.text}" for="username"></label>
+
+                        <small th:class="text-danger"
+                               th:if="${#fields.hasErrors('username')}"
+                               th:errors="*{username}"></small>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input th:name="email"
+                               th:field="*{email}"
+                               th:errorclass="is-invalid"
+                               type="text"
+                               class="form-control"
+                               id="email"
+                               placeholder="name@example.com">
+
+                        <label th:text="#{emailAddress.text}" for="email"></label>
+
+                        <small th:class="text-danger"
+                               th:if="${#fields.hasErrors('email')}"
+                               th:errors="*{email}"></small>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input th:name="password"
+                               th:field="*{password}"
+                               th:errorclass="is-invalid"
+                               type="password"
+                               class="form-control"
+                               id="password"
+                               placeholder="Password">
+
+                        <label th:text="#{password.text}" for="password"></label>
+
+                        <small th:class="text-danger"
+                               th:if="${#fields.hasErrors('password')}"
+                               th:errors="*{password}"></small>
+                    </div>
+
+                    <div class="form-floating">
+                        <input th:name="repeatPassword"
+                               th:field="*{repeatPassword}"
+                               th:errorclass="is-invalid"
+                               type="password"
+                               class="form-control"
+                               id="repeatPassword"
+                               placeholder="repeatPassword">
+
+                        <label th:text="#{repeatPassword.text}" for="repeatPassword"></label>
+
+                        <small th:class="text-danger"
+                               th:if="${#fields.hasErrors('repeatPassword')}"
+                               th:errors="*{repeatPassword}"></small>
+                    </div>
+
+                    <div class="form-check form-switch terms-and-conditions">
+                        <input th:name="termsAndConditionsAgreed"
+                               th:field="*{termsAndConditionsAgreed}"
+                               class="form-check-input"
+                               type="checkbox"
+                               role="switch"
+                               id="flexSwitchCheckDefault">
+
+                        <label th:text="#{iAgreeWithThe.text}" class="form-check-label"
+                               for="flexSwitchCheckDefault">
+                            </label><a th:text="#{termsAndConditions.lowercase.text}" href="/terms-and-conditions"></a>
+
+                        <small th:class="text-danger"
+                               th:if="${#fields.hasErrors('termsAndConditionsAgreed')}"
+                               th:errors="*{termsAndConditionsAgreed}"></small>
+                    </div>
+
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary register-button" th:text="#{register.text}"></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+<footer th:replace="~{fragments/components :: site-footer}"></footer>
+
+</html>

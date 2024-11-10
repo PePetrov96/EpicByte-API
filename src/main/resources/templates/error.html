@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec='http://www.thymeleaf.org/extras/spring-security'>
+
+<head th:replace="~{fragments/components :: site-head}"></head>
+
+<body>
+    <header th:replace="~{fragments/components :: site-navigation}"></header>
+
+    <div class="page-container">
+        <div class="newsletter-container">
+            <div style="display: flex; align-items: center; text-align: center" class="newsletter">
+
+                <h1 th:text="${errorType}"></h1>
+                <h2 th:text="${errorText}"></h2>
+
+                <div class="return-home-button-container">
+                    <a class="return-home-button" href="/">Return home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<footer th:replace="~{fragments/components :: site-footer}"></footer>
+
+</html>

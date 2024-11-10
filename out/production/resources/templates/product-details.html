@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec='http://www.thymeleaf.org/extras/spring-security'>
+
+<head th:replace="~{fragments/components :: site-head}"></head>
+
+<body>
+    <header th:replace="~{fragments/components :: site-navigation}"></header>
+
+    <div class="page-container">
+        <div class="product-details-container">
+            <!--        <i class="fas fa-cart-plus"></i> &lt;!&ndash; add cart -->
+            <!--        <i class="far fa-heart"></i> &lt;!&ndash; empty heart -->
+            <!--        <i class="fas fa-heart"></i> &lt;!&ndash; full heart -->
+            <div th:replace="~{fragments/components :: breadcrumbs}"></div>
+
+            <div class="product-container">
+                <div th:method="POST"
+                     th:object="${product}"
+                     class="product-main-details-container">
+
+                    <div class="product-details-image-container">
+                        <img th:src="${product.productImageUrl}" th:action="${product.productName} + ' image'">
+                    </div>
+
+                    <div class="product-main-details">
+                        <div class="product-main-details-specs">
+                            <table>
+                                <tbody>
+                                    <tr th:each="detail : ${productDetails}">
+                                        <th th:text="${detail.key}"></th>
+                                        <td th:text="${detail.value}"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="product-item details-additional details-page">
+                            <span class="product-price-wrapper">
+                                <span class="product-price product-price-details-page" th:text="${#strings.substring(product.productPrice.toString(), 0, product.productPrice.toString().indexOf('.'))}"></span>
+                                <span class="product-price-precision details-page" th:text="',' + ${#strings.contains(product.productPrice.toString(), '.') ? #strings.substring(product.productPrice.toString(), product.productPrice.toString().indexOf('.') + 1) : '00'}">Decimal Part</span>
+                                <span th:text="' ' + #{currency}" class="product-price-currency"></span>
+                            </span>
+
+                            <div class="product-item buttons">
+                                <button type="button"
+                                        class="item-add-to-cart-button details-page"
+                                        id="item-add-to-cart-button"
+                                        th:text="#{add.to.cart.text}"
+                                        th:data-product-id="${product.id}"
+                                        th:data-product-type="${product.productType}"
+                                        th:data-success-message="#{added.to.cart.success}"
+                                        th:data-fail-message="#{added.to.cart.fail}">
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="product-details-admin-items" sec:authorize="hasAnyRole('MODERATOR', 'ADMIN')">
+                            <a class="item-update-button" th:href="@{/moderator/{linkType}/update/{id}(linkType=${linkType}, id=${product.id})}" th:text="UPDATE"></a>
+                            <a class="item-delete-button" th:href="@{/moderator/{linkType}/delete/{id}(linkType=${linkType}, id=${product.id})}" th:text="DELETE"></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-details-container-divider"></div>
+
+                <div class="product-additional-details-container">
+                    <div class="product-main-details-resume">
+                        <h1 th:text="#{description.text}"></h1>
+                        <p th:text="${product.description}"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="imageModal" class="modal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content" style="box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.05); border-radius: 15px;">
+                <div class="modal-body">
+                    <button type="button" class="btn-close float-end" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <img id="modalImage" class="img-fluid" src="" alt="Product image">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<footer th:replace="~{fragments/components :: site-footer}"></footer>
+</html>

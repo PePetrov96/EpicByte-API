@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec='http://www.thymeleaf.org/extras/spring-security'>
+
+<head th:replace="~{fragments/components :: site-head}"></head>
+
+<body>
+    <header th:replace="~{fragments/components :: site-navigation}"></header>
+
+    <div class="page-container">
+        <div class="carousel-container">
+            <div id="carousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active" data-bs-interval="2900">
+                        <img src="/images/Carousel-image-1.png" class="d-block w-100" alt="Carousel Image 1">
+                    </div>
+                    <div class="carousel-item" data-bs-interval="2900">
+                        <img src="/images/Carousel-image-2.png" class="d-block w-100" alt="Carousel Image 2">
+                    </div>
+                    <div class="carousel-item" data-bs-interval="2900">
+                        <img src="/images/Carousel-image-3.png" class="d-block w-100" alt="Carousel Image 3">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="newsletter-container">
+            <div class="newsletter">
+                <h1 th:text="#{newsletter.header.text}"></h1>
+
+                <form th:method="POST"
+                      th:action="@{/subscribe}"
+                      th:object="${subscriberDTO}"
+                      class="newsletter-input-container">
+
+                    <div class="form-floating mb-3">
+                        <input th:name="name"
+                               th:field="*{name}"
+                               th:errorclass="is-invalid"
+                               type="text"
+                               class="form-control"
+                               id="name"
+                               placeholder="name">
+
+                        <label th:text="#{firstName.text}" for="name"></label>
+
+                        <small th:class="text-danger"
+                               th:if="${#fields.hasErrors('name')}"
+                               th:errors="*{name}"></small>
+                    </div>
+
+
+                    <div class="form-floating mb-3">
+                        <input th:name="email"
+                               th:field="*{email}"
+                               th:errorclass="is-invalid"
+                               type="email"
+                               class="form-control"
+                               id="email"
+                               placeholder="email">
+
+                        <label th:text="#{emailAddress.text}" for="email"></label>
+
+                        <small th:class="text-danger"
+                               th:if="${#fields.hasErrors('email')}"
+                               th:errors="*{email}"></small>
+                    </div>
+
+                    <p th:text="#{subscription.caution.text}"></p>
+
+                    <div class="col-12">
+                        <button type="submit"
+                                class="btn btn-primary subscribe-button"
+                                th:text="#{subscribe.button.text}">
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+<footer th:replace="~{fragments/components :: site-footer}"></footer>
+
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec='http://www.thymeleaf.org/extras/spring-security'>
+
+<head th:replace="~{fragments/components :: site-head}"></head>
+<body>
+    <header th:replace="~{fragments/components :: site-navigation}"></header>
+    <div class="page-container">
+        <div class="display-text-container">
+            <div th:unless="${pageType} == 'Completed Successfully'">
+                <h1 th:text="${pageType}">Terms & Conditions or Privacy</h1>
+
+                <div>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit amet tellus cras adipiscing enim. Mauris ultrices eros in cursus turpis massa tincidunt dui ut. Facilisi morbi tempus iaculis urna id volutpat lacus laoreet non. Pharetra et ultrices neque ornare aenean euismod elementum nisi quis. Malesuada pellentesque elit eget gravida cum sociis natoque penatibus et. Dignissim convallis aenean et tortor at risus viverra adipiscing at. Orci porta non pulvinar neque laoreet. Sed libero enim sed faucibus. Odio ut enim blandit volutpat.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit amet tellus cras adipiscing enim. Mauris ultrices eros in cursus turpis massa tincidunt dui ut. Facilisi morbi tempus iaculis urna id volutpat lacus laoreet non. Pharetra et ultrices neque ornare aenean euismod elementum nisi quis. Malesuada pellentesque elit eget gravida cum sociis natoque penatibus et. Dignissim convallis aenean et tortor at risus viverra adipiscing at. Orci porta non pulvinar neque laoreet. Sed libero enim sed faucibus. Odio ut enim blandit volutpat.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit amet tellus cras adipiscing enim. Mauris ultrices eros in cursus turpis massa tincidunt dui ut. Facilisi morbi tempus iaculis urna id volutpat lacus laoreet non. Pharetra et ultrices neque ornare aenean euismod elementum nisi quis. Malesuada pellentesque elit eget gravida cum sociis natoque penatibus et. Dignissim convallis aenean et tortor at risus viverra adipiscing at. Orci porta non pulvinar neque laoreet. Sed libero enim sed faucibus. Odio ut enim blandit volutpat.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit amet tellus cras adipiscing enim. Mauris ultrices eros in cursus turpis massa tincidunt dui ut. Facilisi morbi tempus iaculis urna id volutpat lacus laoreet non. Pharetra et ultrices neque ornare aenean euismod elementum nisi quis. Malesuada pellentesque elit eget gravida cum sociis natoque penatibus et. Dignissim convallis aenean et tortor at risus viverra adipiscing at. Orci porta non pulvinar neque laoreet. Sed libero enim sed faucibus. Odio ut enim blandit volutpat.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit amet tellus cras adipiscing enim. Mauris ultrices eros in cursus turpis massa tincidunt dui ut. Facilisi morbi tempus iaculis urna id volutpat lacus laoreet non. Pharetra et ultrices neque ornare aenean euismod elementum nisi quis. Malesuada pellentesque elit eget gravida cum sociis natoque penatibus et. Dignissim convallis aenean et tortor at risus viverra adipiscing at. Orci porta non pulvinar neque laoreet. Sed libero enim sed faucibus. Odio ut enim blandit volutpat.</p>
+                </div>
+            </div>
+
+            <div th:if="${pageType} == 'Completed Successfully'">
+                <h1 th:text="${pageText}"></h1>
+
+                <div class="return-home-button-container">
+                    <a th:text="#{return.home.text}" class="return-home-button" href="/">Return home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<footer th:replace="~{fragments/components :: site-footer}"></footer>
+</html>
