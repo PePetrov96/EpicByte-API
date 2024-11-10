@@ -21,9 +21,9 @@ spring:
     port: 587
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/epicbyte_database?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC
-    username: root
-    password:
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3307}/epicbyte_database?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC
+    username: ${MYSQL_USER:root}
+    password: ${MYSQL_PASSWORD:}
 #  datasource:
 #    driverClassName: com.mysql.cj.jdbc.Driver
 #    url: jdbc:mysql://root:14XbPX0Mj4LgWaENs5SaLrVdKM2IW42C@i8lify.stackhero-network.com:3306/root?useSSL=true&requireSSL=true&allowPublicKeyRetrieval=true
@@ -35,11 +35,11 @@ logging:
     org:
       hibernate:
         type:
-#          descriptor: TRACE
-#        SQL: DEBUG
-#      nodeValue: WARN
+      #          descriptor: TRACE
+      #        SQL: DEBUG
+      #      nodeValue: WARN
       springframework:
-#        security: DEBUG
+        #        security: DEBUG
         SQL: OFF
         type:
           descriptor: OFF
@@ -55,3 +55,7 @@ server:
 admin:
   username: ${ADMIN_USERNAME:admin}
   password: ${ADMIN_PASSWORD:admin}
+
+  epicbyte:
+    api:
+      base-url: ${API_BASE_URL:http://localhost:5001}
